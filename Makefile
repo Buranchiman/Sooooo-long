@@ -7,12 +7,7 @@ NAME_BONUS = so_long_bonus
 
 PATH_SRCS = srcs/
 
-SRCS	+= get_map.c
-SRCS	+= checking.c
-SRCS	+= direction.c
-SRCS	+= travel.c
-SRCS	+= init.c
-SRCS	+= window.c
+SRCS	+= name.c
 MAIN	+= srcs/main.c
 
 vpath %.c $(PATH_SRCS)
@@ -26,11 +21,10 @@ OBJS_BONUS	= $(patsubst %.c, $(PATH_OBJS)/%.o, $(SRCS_BONUS))
 
 ################################COMPILATION####################################
 
-INCLUDE	= -Ilibft/includes -Iinclude -I /mnt/nfs/homes/wvallee/42cursus/minilibx-linux
+INCLUDE	= -Ilibft/includes -Iinclude -Iminilibx-linux
 
-LINK	= libft/libft.a -L /mnt/nfs/homes/wvallee/42cursus/minilibx-linux/ -lmlx -lXext -lX11
+LINK	= libft/libft.a -L minilibx-linux/ -lmlx -lXext -lX11
 
-CC		= clang
 CFLAGS	= -Wall -Wextra -Werror -g3
 
 ##################################RULES#######################################
