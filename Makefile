@@ -8,6 +8,7 @@ NAME_BONUS = so_long_bonus
 PATH_SRCS = srcs/
 
 SRCS	+= name.c
+SRCS	+= parsing.c
 MAIN	+= srcs/main.c
 
 vpath %.c $(PATH_SRCS)
