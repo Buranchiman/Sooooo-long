@@ -47,5 +47,6 @@ int	main(int arc, char **arv)
 		exit(EXIT_FAILURE);
 	}
 	check_file_format(arv[1]);
+	get_map(arv[1]);
 	return (0);
 }
