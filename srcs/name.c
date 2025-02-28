@@ -62,16 +62,20 @@ void	check_borders(char **map)
 
 	if (!is_all_c(map[0], '1'))
 		error_management(map, 0);
+	//ft_printf(1, "passed first wall\n");
 	length = ft_strlen(map[0]);
 	j = 1;
 	while (map[j])
 	{
 		if (ft_strlen(map[j]) != length)
 			error_management(map, 0);
-		if (map[j][0] != '1' || map[j][ft_strlen(map[j])] != '1')
+		if (map[j][0] != '1' || map[j][ft_strlen(map[j]) - 1] != '1')
+		{
+			ft_printf(1, "side walls missing\n");
 			error_management(map, 0);
+		}
 		i = 0;
-		while (map[j][j])
+		while (map[j][i])
 		{
 			if (!ft_strchr("01CEP", map[j][i]))
 				error_management(map, 0);
@@ -86,7 +90,7 @@ void	check_map(char **map)
 {
 	int	i;
 	int	j;
-	int	count[3];
+	int	count[3] = {0, 0, 0};
 
 	check_borders(map);
 	j = 0;
@@ -95,11 +99,11 @@ void	check_map(char **map)
 		i = 0;
 		while (map[j][i])
 		{
-			if (map[i][j] == 'C')
+			if (map[j][i] == 'C')
 				count[0]++;
-			if (map[i][j] == 'E')
+			if (map[j][i] == 'E')
 				count[1]++;
-			if (map[i][j] == 'P')
+			if (map[j][i] == 'P')
 				count[2]++;
 			i++;
 		}
