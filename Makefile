@@ -9,6 +9,7 @@ PATH_SRCS = srcs/
 
 SRCS	+= name.c
 SRCS	+= parsing.c
+SRCS	+= valid_path.c
 MAIN	+= srcs/main.c
 
 vpath %.c $(PATH_SRCS)
