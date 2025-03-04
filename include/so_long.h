@@ -15,6 +15,14 @@ typedef struct s_data
 	int				y;
 	int				items;
 	int				count;
+	void			*mlx;
+	void			*win;
+	int				frame_count;
+	void			*ground;
+	void			*tree;
+	void			*exit;
+	void			*collectible;
+	void			*player;
 }				t_data;
 
 void	check_file_format(char *file);

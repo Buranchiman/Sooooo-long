@@ -49,13 +49,60 @@ void	ft_clean_exit(t_data *data, int option, char *msg)
 	exit(EXIT_SUCCESS);
 }
 
+void	display_image(t_data *data, char c, int x, int y)
+{
+	if (c == '0')
+		mlx_put_image_to_window(data->mlx, data->win, data->ground, x * 64, y * 64);
+	if (c == '1')
+		mlx_put_image_to_window(data->mlx, data->win, data->tree, x * 64, y * 64);
+}
+
+void	render(t_data *data)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	mlx_clear_window(data->mlx, data->win);
+	while (data->map[j])
+	{
+		i = 0;
+		while (data->map[j][i])
+		{
+			display_image(data, data->map[j][i], i, j);
+			i++;
+		}
+		j++;
+	}
+}
+
+// Loop function that updates every N frames
+int loop_hook(t_data *data)
+{
+    data->frame_count++;
+
+    if (data->frame_count >= 10) // Adjust this value to control speed
+    {
+        render(data);
+        data->frame_count = 0; // Reset frame counter
+    }
+    return (0);
+}
+
+int	start_mlx(t_data  *data)
+{
+	int	stock;
+
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, 64 * data->size, 64 * data->nb, "crampte");
+	data->ground = mlx_xpm_file_to_image(data->mlx, "img/ground64.xpm", &stock, &stock);
+	data->tree = mlx_xpm_file_to_image(data->mlx, "img/tree64.xpm", &stock, &stock);
+	return (0);
+}
+
 int	main(int arc, char **arv)
 {
 	t_data	data;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	int		stock;
 
 	if (arc == 1)
 		return (0);
@@ -66,11 +113,17 @@ int	main(int arc, char **arv)
 	}
 	check_file_format(arv[1]);
 	get_map(&data, arv[1]);
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 64 * data.size, 64 * data.nb, "crampte");
-	img = mlx_xpm_file_to_image(mlx, "img/crampte.xpm", &stock, &stock);
-	mlx_put_image_to_window(mlx, win,  img, 0, 0);
-	mlx_loop(mlx);
+	free(data.map);
+	data.map = ft_split(data.buffer, '\n');
+	free(data.buffer);
+	if (!data.map)
+	{
+		perror("Error\n");
+		exit(EXIT_FAILURE);
+	}
+	start_mlx(&data);
+	mlx_loop_hook(data.mlx, loop_hook, &data);
+	mlx_loop(data.mlx);
 	ft_clean_exit(&data, 0, NULL);
 	return (0);
 }
