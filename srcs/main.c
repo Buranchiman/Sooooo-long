@@ -55,6 +55,12 @@ void	display_image(t_data *data, char c, int x, int y)
 		mlx_put_image_to_window(data->mlx, data->win, data->ground, x * 64, y * 64);
 	if (c == '1')
 		mlx_put_image_to_window(data->mlx, data->win, data->tree, x * 64, y * 64);
+	if (c == 'P')
+		mlx_put_image_to_window(data->mlx, data->win, data->player, x * 64, y * 64);
+	if (c == 'C')
+		mlx_put_image_to_window(data->mlx, data->win, data->collectible, x * 64, y * 64);
+	if (c == 'E')
+		mlx_put_image_to_window(data->mlx, data->win, data->exit, x * 64, y * 64);
 }
 
 void	render(t_data *data)
@@ -81,6 +87,7 @@ int loop_hook(t_data *data)
 {
     data->frame_count++;
 
+	//ft_printf(1, "working\n");
     if (data->frame_count >= 10) // Adjust this value to control speed
     {
         render(data);
@@ -97,6 +104,14 @@ int	start_mlx(t_data  *data)
 	data->win = mlx_new_window(data->mlx, 64 * data->size, 64 * data->nb, "crampte");
 	data->ground = mlx_xpm_file_to_image(data->mlx, "img/ground64.xpm", &stock, &stock);
 	data->tree = mlx_xpm_file_to_image(data->mlx, "img/tree64.xpm", &stock, &stock);
+	data->player = mlx_xpm_file_to_image(data->mlx, "img/character.xpm", &stock, &stock);
+	data->collectible = mlx_xpm_file_to_image(data->mlx, "img/collectible.xpm", &stock, &stock);
+	data->exit = mlx_xpm_file_to_image(data->mlx, "img/exit.xpm", &stock, &stock);
+	if (!data->ground || !data->tree || !data->collectible || !data->player)
+	{
+		ft_printf(2, "xpm image failed to load");
+		exit(EXIT_FAILURE);
+	}
 	return (0);
 }
 
@@ -122,6 +137,8 @@ int	main(int arc, char **arv)
 		exit(EXIT_FAILURE);
 	}
 	start_mlx(&data);
+	//render(&data);
+	data.frame_count = 0;
 	mlx_loop_hook(data.mlx, loop_hook, &data);
 	mlx_loop(data.mlx);
 	ft_clean_exit(&data, 0, NULL);

@@ -1,11 +1,11 @@
 /* XPM */
-static char *_b7aa98a1a574927a34323961d031c24oGtG7bubOYpRlexw[] = {
+static char *f7887b3ec5ab4b5eb6a88c8131d6daaf79AnXmDyqL7xE8E7[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 4 1 ",
 "  c #000101",
-". c #261F00",
-"X c #2F2403",
-"o c #99875F",
+". c #261E00",
+"X c #2E2503",
+"o c #8C7D87",
 /* pixels */
 " ooooooooooooooooooooo oooooooooooooooooooooooo oooooooooooooo  ",
 "o      ooooooooooooooo ooooooooooooooooXooXoooo ooooooooooooo  o",
@@ -34,14 +34,14 @@ static char *_b7aa98a1a574927a34323961d031c24oGtG7bubOYpRlexw[] = {
 "ooo   oo  XXooooo XooooooXXo.XXXX.XXoooooooooooXooooXXoo  oooooo",
 "    ooooo ooXXXXXXXXoooooo..XXX.XX.ooooooooooXXXooooXoooo  oooo ",
 "oooooooooo ooooooo XXXXooo.XXXX..X.oooXXXoooooXoooXoXooooo o   o",
-"oooooooooo oooooooo oooXX..XXXXX.X.XXXXoXXXXoXXooooXXooo    oooo",
-"oooooooooo oooooooo  oooo.XXXX.X.X.oooooooooXXXXXXXXooo  ooooooo",
-"oooooooooo  oooooooo  ooo.XXXX.XXX.  oooooooooooooooooo oooooooo",
-"ooooooooooo ooooooooo     .XXX..XX.oo oooooooooooooooo  oooooooo",
-"ooooooooooo oooooooooooooo..XX..XX.oo  oooooooooooooo  ooooooooo",
-"ooooooooooo  ooooooooooooo..XXX.XX.ooo oooooooooooo   oooooooooo",
-"oooooooooooo ooooooooooooo..XXXXXX.ooo  ooooooooo   o oooooooooo",
-"oooooooooooo ooooooooooooo..XXXXXX.oooo oooooooo  ooo  ooooooooo",
+"oooooooooo ooooXooo oooXX..XXXXX.X.XXXXoXXXXoXXooooXXooo    oooo",
+"oooooooooo oooXoooo  oooo.XXXX.X.X.oooooooooXXXXXXXXooo  ooooooo",
+"oooooooooo  oooXXXXo  ooo.XXXX.XXX.  oooooooooooooooooo oooooooo",
+"ooooooooooo ooooooXXXX    .XXX..XX.oo ooooooooXooooooo  oooooooo",
+"ooooooooooo oooooooooXXooo..XX..XX.oo  ooXoooXooooooo  ooooooooo",
+"ooooooooooo  oooooooooXXXXX.XXX.XX.Xoo oooXXXoooooo   oooooooooo",
+"oooooooooooo ooooooooooooo..XXXXXX.oXX  oXXoooooo   o oooooooooo",
+"oooooooooooo ooooooooooooo..XXXXXX.ooXXXXXoooooo  ooo  ooooooooo",
 "oooooooooooo  oooooooooooo.XXXXXXX.oooo ooooooo  ooooo ooooooooo",
 "ooooooooooooo oooooooooooo.XXX.X.X.ooooo oooooo oooooo ooooooooo",
 "ooooooooooooo oooooooooooo..XX.X...ooooo ooooo  oooooo   ooooooo",
