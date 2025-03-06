@@ -144,4 +144,5 @@ void	get_map(t_data  *data, char *file_name)
 		free(data->map);
 		exit(EXIT_FAILURE);
 	}
+	data->count = 0;
 }

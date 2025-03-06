@@ -51,15 +51,23 @@ void	ft_clean_exit(t_data *data, int option, char *msg)
 
 void	display_image(t_data *data, char c, int x, int y)
 {
-	if (c == '0')
+	if (c == '0' && data->count == data->items)
+		mlx_put_image_to_window(data->mlx, data->win, data->grass, x * 64, y * 64);
+	// else if (c == '1' && data->count == data->items)
+	// 	mlx_put_image_to_window(data->mlx, data->win, data->leaf_tree, x * 64, y * 64);
+	// else if (c == 'P' && data->count == data->items)
+	// 	mlx_put_image_to_window(data->mlx, data->win, data->greenplayer, x * 64, y * 64);
+	// else if (c == 'E' && data->count == data->items)
+	// 	mlx_put_image_to_window(data->mlx, data->win, data->portal, x * 64, y * 64);
+	else if (c == '0')
 		mlx_put_image_to_window(data->mlx, data->win, data->ground, x * 64, y * 64);
-	if (c == '1')
+	else if (c == '1')
 		mlx_put_image_to_window(data->mlx, data->win, data->tree, x * 64, y * 64);
-	if (c == 'P')
+	else if (c == 'P')
 		mlx_put_image_to_window(data->mlx, data->win, data->player, x * 64, y * 64);
-	if (c == 'C')
+	else if (c == 'C')
 		mlx_put_image_to_window(data->mlx, data->win, data->collectible, x * 64, y * 64);
-	if (c == 'E')
+	else if (c == 'E')
 		mlx_put_image_to_window(data->mlx, data->win, data->exit, x * 64, y * 64);
 }
 
@@ -82,12 +90,42 @@ void	render(t_data *data)
 	}
 }
 
+void	moving(int keycode, t_data *data)
+{
+	int vector[2] = {0, 0};
+
+	if (keycode == KEY_W && data->map[data->y - 1][data->x] != '1')
+		vector[0]--;
+	if (keycode == KEY_A && data->map[data->y][data->x - 1] != '1')
+		vector[1]--;
+	if (keycode == KEY_S && data->map[data->y + 1][data->x] != '1')
+		vector[0]++;
+	if (keycode == KEY_D && data->map[data->y][data->x + 1] != '1')
+		vector[1]++;
+	if (vector[0] || vector[1])
+	{
+		if (data->map[data->y][data->x + vector[1]] == 'C' || data->map[data->y + vector[0]][data->x] == 'C')
+			data->count++;
+		data->map[data->y][data->x] = '0';
+		data->x += vector[1];
+		data->y += vector[0];
+		data->map[data->y][data->x] = 'P';
+	}
+}
+
+int	key_hook(int keycode, t_data* data)
+{
+	moving(keycode, data);
+	if (keycode == KEY_ESC)
+		exit(0);
+	return (0);
+}
+
 // Loop function that updates every N frames
 int loop_hook(t_data *data)
 {
     data->frame_count++;
 
-	//ft_printf(1, "working\n");
     if (data->frame_count >= 10) // Adjust this value to control speed
     {
         render(data);
@@ -106,6 +144,7 @@ int	start_mlx(t_data  *data)
 	data->tree = mlx_xpm_file_to_image(data->mlx, "img/tree64.xpm", &stock, &stock);
 	data->player = mlx_xpm_file_to_image(data->mlx, "img/character.xpm", &stock, &stock);
 	data->collectible = mlx_xpm_file_to_image(data->mlx, "img/collectible.xpm", &stock, &stock);
+	data->grass = mlx_xpm_file_to_image(data->mlx, "img/grass.xpm", &stock, &stock);
 	data->exit = mlx_xpm_file_to_image(data->mlx, "img/exit.xpm", &stock, &stock);
 	if (!data->ground || !data->tree || !data->collectible || !data->player)
 	{
@@ -139,6 +178,7 @@ int	main(int arc, char **arv)
 	start_mlx(&data);
 	//render(&data);
 	data.frame_count = 0;
+	mlx_hook(data.win, 2, 1L << 0, key_hook, &data);
 	mlx_loop_hook(data.mlx, loop_hook, &data);
 	mlx_loop(data.mlx);
 	ft_clean_exit(&data, 0, NULL);

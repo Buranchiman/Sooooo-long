@@ -4,6 +4,12 @@
 # include "ultralibft.h"
 # include "mlx.h"
 
+#define KEY_W 119
+#define KEY_A 97
+#define KEY_S 115
+#define KEY_D 100
+#define KEY_ESC 65307
+
 typedef struct s_data
 {
 	unsigned int	nb;
@@ -19,6 +25,7 @@ typedef struct s_data
 	void			*win;
 	int				frame_count;
 	void			*ground;
+	void			*grass;
 	void			*tree;
 	void			*exit;
 	void			*collectible;
