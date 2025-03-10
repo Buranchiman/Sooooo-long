@@ -53,12 +53,12 @@ void	display_image(t_data *data, char c, int x, int y)
 {
 	if (c == '0' && data->count == data->items)
 		mlx_put_image_to_window(data->mlx, data->win, data->grass, x * 64, y * 64);
-	// else if (c == '1' && data->count == data->items)
-	// 	mlx_put_image_to_window(data->mlx, data->win, data->leaf_tree, x * 64, y * 64);
-	// else if (c == 'P' && data->count == data->items)
-	// 	mlx_put_image_to_window(data->mlx, data->win, data->greenplayer, x * 64, y * 64);
-	// else if (c == 'E' && data->count == data->items)
-	// 	mlx_put_image_to_window(data->mlx, data->win, data->portal, x * 64, y * 64);
+	else if (c == '1' && data->count == data->items)
+		mlx_put_image_to_window(data->mlx, data->win, data->green_tree, x * 64, y * 64);
+	else if (c == 'P' && data->count == data->items)
+		mlx_put_image_to_window(data->mlx, data->win, data->happy_player, x * 64, y * 64);
+	else if (c == 'E' && data->count == data->items)
+		mlx_put_image_to_window(data->mlx, data->win, data->opened_exit, x * 64, y * 64);
 	else if (c == '0')
 		mlx_put_image_to_window(data->mlx, data->win, data->ground, x * 64, y * 64);
 	else if (c == '1')
@@ -145,7 +145,10 @@ int	start_mlx(t_data  *data)
 	data->player = mlx_xpm_file_to_image(data->mlx, "img/character.xpm", &stock, &stock);
 	data->collectible = mlx_xpm_file_to_image(data->mlx, "img/collectible.xpm", &stock, &stock);
 	data->grass = mlx_xpm_file_to_image(data->mlx, "img/grass.xpm", &stock, &stock);
+	data->happy_player = mlx_xpm_file_to_image(data->mlx, "img/happy_player.xpm", &stock, &stock);
+	data->green_tree = mlx_xpm_file_to_image(data->mlx, "img/green_tree.xpm", &stock, &stock);
 	data->exit = mlx_xpm_file_to_image(data->mlx, "img/exit.xpm", &stock, &stock);
+	data->opened_exit = mlx_xpm_file_to_image(data->mlx, "img/opened_exit.xpm", &stock, &stock);
 	if (!data->ground || !data->tree || !data->collectible || !data->player)
 	{
 		ft_printf(2, "xpm image failed to load");

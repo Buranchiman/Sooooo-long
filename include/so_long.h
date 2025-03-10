@@ -27,9 +27,12 @@ typedef struct s_data
 	void			*ground;
 	void			*grass;
 	void			*tree;
+	void			*green_tree;
 	void			*exit;
+	void			*opened_exit;
 	void			*collectible;
 	void			*player;
+	void			*happy_player;
 }				t_data;
 
 void	check_file_format(char *file);
