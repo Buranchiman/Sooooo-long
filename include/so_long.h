@@ -4,11 +4,11 @@
 # include "ultralibft.h"
 # include "mlx.h"
 
-#define KEY_W 119
-#define KEY_A 97
-#define KEY_S 115
-#define KEY_D 100
-#define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
 
 typedef struct s_data
 {
@@ -21,18 +21,15 @@ typedef struct s_data
 	int				y;
 	int				items;
 	int				count;
+	int				moves;
 	void			*mlx;
 	void			*win;
 	int				frame_count;
-	void			*ground;
-	void			*grass;
-	void			*tree;
-	void			*green_tree;
-	void			*exit;
-	void			*opened_exit;
+	void			*ground[2];
+	void			*tree[2];
+	void			*exit[3];
 	void			*collectible;
-	void			*player;
-	void			*happy_player;
+	void			*player[2];
 }				t_data;
 
 void	check_file_format(char *file);
@@ -40,8 +37,8 @@ void	check_file_format(char *file);
 void	read_all_file(char *file_name, t_data *data);
 int		is_all_c(char *string, char c);
 void	check_borders(t_data *data, char **map);
-void	check_map(t_data  *data, char **map);
-void	get_map(t_data  *data, char *file_name);
+void	check_map(t_data *data, char **map);
+void	get_map(t_data *data, char *file_name);
 
 int		searching_path(t_data *data, unsigned int y, unsigned int x);
 

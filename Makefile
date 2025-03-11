@@ -31,7 +31,10 @@ CFLAGS	= -Wall -Wextra -Werror -g3
 
 ##################################RULES#######################################
 
-all:  libft $(NAME)
+all: mlx libft $(NAME)
+
+mlx:
+	${MAKE} -sC minilibx-linux
 
 libft:
 	${MAKE} -sC libft
@@ -63,4 +66,4 @@ fclean: clean
 re: fclean
 		${MAKE}
 
-.PHONY: all libft clean fclean re
+.PHONY: all mlx libft bnous clean fclean re

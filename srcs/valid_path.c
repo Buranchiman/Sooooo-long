@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_path.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wivallee <wivallee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/11 14:11:32 by wivallee          #+#    #+#             */
+/*   Updated: 2025/03/11 14:11:34 by wivallee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	searching_path(t_data *data, unsigned int y, unsigned int x)
@@ -10,13 +22,13 @@ int	searching_path(t_data *data, unsigned int y, unsigned int x)
 		return (0);
 	if (data->map[y][x] == 'C')
 		data->count++;
-	if (data->map[y][x] !=  'E')
+	if (data->map[y][x] != 'E')
 		data->map[y][x] = '1';
-	if (searching_path(data, y , x + 1) == 1)
+	if (searching_path(data, y, x + 1) == 1)
 		return (1);
 	if (searching_path(data, y + 1, x) == 1)
 		return (1);
-	if (searching_path(data, y , x - 1) == 1)
+	if (searching_path(data, y, x - 1) == 1)
 		return (1);
 	if (searching_path(data, y - 1, x) == 1)
 		return (1);
