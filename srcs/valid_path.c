@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wivallee <wivallee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: buranchiman <buranchiman@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 14:11:32 by wivallee          #+#    #+#             */
-/*   Updated: 2025/03/11 14:11:34 by wivallee         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:05:35 by buranchiman      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	searching_path(t_data *data, unsigned int y, unsigned int x)
 		return (0);
 	if (data->count == data->items && data->map[y][x] == 'E')
 		return (1);
-	if (data->map[y][x]  == '1')
+	if (data->map[y][x] == '1')
 		return (0);
 	if (data->map[y][x] == 'C')
 		data->count++;

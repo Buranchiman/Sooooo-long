@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   name.c                                             :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wivallee <wivallee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: buranchiman <buranchiman@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 14:10:56 by wivallee          #+#    #+#             */
-/*   Updated: 2025/03/11 16:25:45 by wivallee         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:05:20 by buranchiman      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,8 @@ void	read_all_file(char *file_name, t_data *data)
 		bytes_read = read(fd, buffer, 1024);
 		data->buffer = ft_strjoinfree(data->buffer, buffer);
 		if (bytes_read == -1 || data->buffer == NULL)
-		{
 			ft_clean_exit(data, 1, "Fail in read or strjoin");
-			// perror("Error\n");
-			// if (data->buffer)
-			// 	free(data->buffer);
-			// exit(EXIT_FAILURE);
-		}
 	}
-
-}
-
-int	is_all_c(char *string, char c)
-{
-	int	i;
-
-	i = 0;
-	while (string[i])
-	{
-		if (string[i] != c)
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	check_borders(t_data *data, char **map)
@@ -78,7 +57,6 @@ void	check_borders(t_data *data, char **map)
 				ft_clean_exit(data, 1, "Map char unvalid");
 			i++;
 		}
-
 		j++;
 	}
 }
@@ -110,27 +88,6 @@ void	check_elems(t_data *data, char **map, int count[3])
 	data->nb = j;
 }
 
-void	init_variables(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	data->buffer = NULL;
-	data->map = NULL;
-	data->mlx = NULL;
-	data->win = NULL;
-	data->collectible = NULL;
-	while (i < 2)
-	{
-		data->exit[i] = NULL;
-		data->player[i] = NULL;
-		data->ground[i] = NULL;
-		data->tree[i] = NULL;
-		i++;
-	}
-	data->exit[i] = NULL;
-}
-
 void	check_map(t_data *data, char **map)
 {
 	int	count[3];
@@ -145,32 +102,8 @@ void	check_map(t_data *data, char **map)
 	data->items = count[0];
 }
 
-void	fetch_player(t_data *data)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (data->map[j])
-	{
-		i = 0;
-		while (data->map[j][i])
-		{
-			if (data->map[j][i] == 'P')
-			{
-				data->x = i;
-				data->y = j;
-				return ;
-			}
-			i++;
-		}
-		j++;
-	}
-}
-
 void	get_map(t_data *data, char *file_name)
 {
-
 	init_variables(data);
 	read_all_file(file_name, data);
 	data->map = ft_split(data->buffer, '\n');

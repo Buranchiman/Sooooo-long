@@ -7,9 +7,13 @@ NAME_BONUS = so_long_bonus
 
 PATH_SRCS = srcs/
 
-SRCS	+= name.c
+SRCS	+= exit.c
+SRCS	+= init.c
 SRCS	+= parsing.c
 SRCS	+= valid_path.c
+SRCS	+= read_map.c
+SRCS	+= utils.c
+SRCS	+= visuals.c
 MAIN	+= srcs/main.c
 
 vpath %.c $(PATH_SRCS)
