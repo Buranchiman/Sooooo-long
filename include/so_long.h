@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wivallee <wivallee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/13 13:30:08 by wivallee          #+#    #+#             */
+/*   Updated: 2025/03/13 13:30:42 by wivallee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -48,7 +60,7 @@ void	verify_mlx(t_data *data);
 int		start_mlx(t_data *data);
 
 void	moving(int keycode, t_data *data);
-int		key_hook(int keycode, t_data* data);
+int		key_hook(int keycode, t_data *data);
 
 void	clear_img(t_data *data, void **img_tab, int tab_size);
 void	ft_clean_exit(t_data *data, int option, char *msg);
@@ -56,7 +68,7 @@ int		handle_exit(t_data *data);
 
 void	display_image(t_data *data, char c, int x, int y);
 void	render(t_data *data);
-int 	loop_hook(t_data *data);
+int		loop_hook(t_data *data);
 
 int		is_all_c(char *string, char c);
 void	fetch_player(t_data *data);
